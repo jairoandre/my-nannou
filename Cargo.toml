@@ -1,0 +1,21 @@
+[package]
+name = "nannou"
+version = "0.1.0"
+authors = ["Jairo <jairoandre@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+nannou = "0.9"
+rand = "0.7.0"
+noise = "0.5.1"
+
+# --- SKETCHES
+[[example]]
+name = "raycast"
+path = "sketches/raycast.rs"
+[[example]]
+name = "perlin"
+path = "sketches/perlin.rs"
+[[example]]
+name = "perlin_2"
+path = "sketches/perlin/perlin_2.rs"
