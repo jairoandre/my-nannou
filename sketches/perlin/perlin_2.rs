@@ -1,5 +1,5 @@
 use nannou::prelude::*;
-use noise::{NoiseFn, Perlin, Seedable};
+use noise::{NoiseFn, Perlin, Fbm, Seedable};
 use nannou::app::{Draw};
 use rand::Rng;
 
@@ -56,6 +56,8 @@ struct Particle {
     _perlin_y: Perlin,
     _noise_diameter: f32,
     _radius: f32,
+    _offset_x: f32,
+    _offset_y: f32,
 }
 
 impl Particle {
@@ -64,17 +66,20 @@ impl Particle {
 
         let _t: f32 = rng.gen();
 
-        println!("{}", _t);
-
         let _perlin = Perlin::new();
         let _perlin_x = _perlin.set_seed(rng.gen());
         let _perlin_y = _perlin.set_seed(rng.gen());
+
+        let _offset_x = map_values(rng.gen(), 0.0, 1.0, -200.0, 200.0);
+        let _offset_y = map_values(rng.gen(), 0.0, 1.0, -200.0, 200.0);
 
         Particle {
             _perlin_x: _perlin_x,
             _perlin_y: _perlin_y,
             _noise_diameter: _noise_diameter,
             _radius: _radius,
+            _offset_x: _offset_x,
+            _offset_y: _offset_y,
         }
         
     }
@@ -82,7 +87,7 @@ impl Particle {
     fn get_xy(&self, _coords: [f64; 2]) -> Point2 {
         let _x = map_values(self._perlin_x.get(_coords) as f32, -1.0, 1.0, -self._noise_diameter, self._noise_diameter);
         let _y = map_values(self._perlin_y.get(_coords) as f32, -1.0, 1.0, -self._noise_diameter, self._noise_diameter);
-        pt2(_x, _y)
+        pt2(_x + self._offset_x, _y + self._offset_y)
     }
 
     fn draw(&self, _draw: &Draw, _coords: [f64; 2]) {

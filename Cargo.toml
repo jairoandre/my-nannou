@@ -19,3 +19,6 @@ path = "sketches/perlin.rs"
 [[example]]
 name = "perlin_2"
 path = "sketches/perlin/perlin_2.rs"
+[[example]]
+name = "perlin_3"
+path = "sketches/perlin/perlin_3.rs"
