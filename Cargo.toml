@@ -25,3 +25,6 @@ path = "sketches/perlin/perlin_3.rs"
 [[example]]
 name = "fireworks"
 path = "sketches/fireworks/fireworks.rs"
+[[example]]
+name = "doom"
+path = "sketches/doom/doom.rs"
